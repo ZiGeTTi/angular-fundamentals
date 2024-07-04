@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { EventService } from "./shared/event.service";
 import { ToastrHelperService } from "../common/toastr.service";
+import { IEvent } from "./shared";
 
 @Component({
-selector:'events-list',
 template: `<div>
     <h1>Upcoming Angular Events</h1>
     <hr/>
@@ -16,13 +16,14 @@ template: `<div>
 })
 
 export class EventsListComponent implements OnInit {
-  events:any[]
+  events:IEvent[]
 
   constructor(private eventService: EventService, private toastrService: ToastrHelperService){
 
   }
     ngOnInit(): void {
-      this.events = this.eventService.getEvents() //ctor'da cagırmak tehlikeli o yüzden onInıt ta cagırdık
+    this.eventService.getEvents().subscribe(events=>{this.events = events}) //ctor'da cagırmak tehlikeli o yüzden onInıt ta cagırdık
+    //datayı observable ile cagırdıgımız için subscirbe oluyoruz.
     }
 
     handleThumbnailClick(eventName){

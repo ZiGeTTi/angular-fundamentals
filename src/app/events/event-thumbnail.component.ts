@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { IEvent } from "./shared";
 
 @Component({
     selector: 'event-thumbnail',
-    template: ` <div class="well hoverwell thumbnail">
+    template: ` <div [routerLink] = "['/events', event.id]" class="well hoverwell thumbnail">
             <div>Name: {{event.name}}</div>
             <div>ImageURl: {{event.imageUrl}}</div>
             <div>Price: \${{event.price}}</div>
@@ -13,9 +14,9 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
                 <span *ngSwitchDefault>(Normal Start)</span>
             </div>
             <div *ngIf="event?.location">
-        <span> Location: {{event.location.address}}</span>
+        <span> Location: {{event.location?.address}}</span>
         <span>&nbsp;</span>
-        <span> {{event.location.city}}, {{event.location.country}}</span>
+        <span> {{event.location?.city}}, {{event.location?.country}}</span>
             </div>
             <div *ngIf="event?.onlineUrl">
             <span>onlineUrl {{event.onlineUrl}}</span>
@@ -32,7 +33,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 })
 export class EventThumbnailComponent {
-    @Input() event: any
+    @Input() event: IEvent
     someProperty: any = "some some thing"
     logFoo() {
         console.log('foo')
