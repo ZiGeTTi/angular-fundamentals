@@ -19,10 +19,16 @@ export class EventService {
   }
 
   saveEvent(event: IEvent) {
-    event.id = 111
+    event.id = 1
     event.sessions = []
     EVENTS.push(event)
   }
+  updateEvent(event: IEvent){
+    let index = EVENTS.findIndex(f=>f.id == event.id)
+    EVENTS[index] = event
+  }
+ 
+  
 }
 
 const EVENTS: IEvent[] = [
@@ -45,7 +51,7 @@ const EVENTS: IEvent[] = [
           how to write them, and how to get the new AI CLI to write 
           them for you. Given by the famous PBD, president of Angular 
           University (formerly Oxford University)`,
-        voters: ['bradgreen', 'igorminar', 'martinfowler']
+        voters: ['bradgreen', 'igorminar', 'martinfowler', 'ezgim', 'martinr', 'dan']
       },
       {
         id: 2,
@@ -326,7 +332,7 @@ const EVENTS: IEvent[] = [
         abstract: `Get the skinny on Angular 4 for anyone new to this great new technology.
           Dan Wahlin will show you how you can get started with Angular in 60ish minutes, 
           guaranteed!`,
-        voters: ['bradgreen', 'igorminar', 'johnpapa']
+        voters: ['bradgreen', 'igorminar', 'johnpapa', 'johnpapa', 'johnpapa']
       }
     ]
   }

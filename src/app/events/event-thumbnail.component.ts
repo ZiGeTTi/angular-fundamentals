@@ -4,9 +4,10 @@ import { IEvent } from "./shared";
 @Component({
     selector: 'event-thumbnail',
     template: ` <div [routerLink] = "['/events', event.id]" class="well hoverwell thumbnail">
-            <div>Name: {{event.name}}</div>
+            <div>Name: {{event.name | uppercase}}</div>
             <div>ImageURl: {{event.imageUrl}}</div>
-            <div>Price: \${{event.price}}</div>
+            <div>Price:  {{event.price | currency:'USD'}}</div>
+            <!-- currency, shortDate bunlara pipe deniyor, built-in formatlamaya yarıyor  -->
             <div [ngClass] = "{green: event?.time === '8:00 am' , bold: event?.time ==='8:00 am'}"  [ngSwitch]="event?.time">
                 Time:{{event?.time}}
                 <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
